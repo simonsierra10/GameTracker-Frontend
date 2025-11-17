@@ -1,0 +1,29 @@
+/* Fondo y tipografía global */
+body {
+  margin: 0;
+  padding: 0;
+  background: #f0f4f8;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Scroll suave a anclas */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Empuja el contenido por debajo de la navbar fija (ajusta según su altura real) */
+.app-container {
+  padding-top: 100px;
+  text-align: center;
+}
+
+/* Hace que el scroll a secciones con id se detenga por debajo de la navbar */
+.seccion-ajustada {
+  scroll-margin-top: 100px; /* ajusta este valor si cambias el padding/altura de la navbar */
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}

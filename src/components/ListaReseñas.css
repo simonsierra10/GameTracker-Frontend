@@ -1,0 +1,30 @@
+.lista-reseñas {
+  background: #fdfdfd;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.lista-reseñas h4 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.reseña {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.reseña strong {
+  color: #2c3e50;
+}
+
+.reseña small {
+  display: block;
+  color: #888;
+  margin-top: 4px;
+  font-size: 12px;
+}

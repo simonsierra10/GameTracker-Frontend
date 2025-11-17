@@ -1,0 +1,20 @@
+.estadisticas-personales {
+  background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+  border-radius: 12px;
+  padding: 20px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  margin: 20px auto;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.estadisticas-personales h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.estadisticas-personales p {
+  margin: 8px 0;
+  font-size: 16px;
+}
