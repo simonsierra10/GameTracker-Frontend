@@ -76,3 +76,24 @@
 .botones .eliminar:hover {
   background: #c0392b;
 }
+
+.estado {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.estado.completado {
+  background-color: #eafaf1;
+  color: #2ecc71; /* verde */
+  border: 1px solid #2ecc71;
+}
+
+.estado.pendiente {
+  background-color: #fff4e6;
+  color: #e67e22; /* naranja */
+  border: 1px solid #e67e22;
+}

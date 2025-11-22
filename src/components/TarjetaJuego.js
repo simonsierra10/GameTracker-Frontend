@@ -49,6 +49,11 @@ const TarjetaJuego = ({ juego, eliminarJuego, editarJuego }) => {
         juego.puntuacion >= 70 ? 'Bueno' : 'Regular'}
       </span>
       <p>Horas jugadas: {juego.horasJugadas}</p>
+
+      <p className={juego.completado ? "estado completado" : "estado pendiente"}>
+        {juego.completado ? "✅ Completado" : "⏳ Sin completar"}
+      </p>
+
       <ListaReseñas reseñas={reseñas} />
       <FormularioReseña agregarReseña={agregarReseña} />
       <div className="botones">
