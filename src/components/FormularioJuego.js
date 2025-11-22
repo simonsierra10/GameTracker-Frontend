@@ -6,31 +6,45 @@ const FormularioJuego = ({ agregarJuego }) => {
   const [portada, setPortada] = useState('');
   const [puntuacion, setPuntuacion] = useState('');
   const [horasJugadas, setHorasJugadas] = useState('');
-  const [completado, setCompletado] = useState(false); // ← nuevo estado
+  const [completado, setCompletado] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validación básica
+    if (!titulo || !portada || !puntuacion || !horasJugadas) {
+      setError('Por favor completa todos los campos.');
+      return;
+    }
+
     const nuevoJuego = {
-      id: Date.now(),
-      titulo,
-      portada,
+      titulo: titulo.trim(),
+      portada: portada.trim(),
       puntuacion: parseFloat(puntuacion),
       horasJugadas: parseInt(horasJugadas),
-      completado, // ← se usa el valor del checkbox
+      completado,
       reseñas: []
     };
+
     agregarJuego(nuevoJuego);
+
+    // Limpiar formulario
     setTitulo('');
     setPortada('');
     setPuntuacion('');
     setHorasJugadas('');
-    setCompletado(false); // ← reinicia el checkbox
+    setCompletado(false);
+    setError('');
   };
 
   return (
     <div className="formulario-juego-container">
       <form className="formulario-juego" onSubmit={handleSubmit}>
         <h3>➕ Agregar Juego</h3>
+
+        {error && <p className="mensaje-error">{error}</p>}
+
         <input
           type="text"
           placeholder="Título"

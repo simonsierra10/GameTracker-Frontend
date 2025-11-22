@@ -66,3 +66,12 @@
   accent-color: #3498db;
   cursor: pointer;
 }
+.mensaje-error {
+  color: #e74c3c;
+  background: #ffe6e6;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-align: center;
+}

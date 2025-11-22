@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import FormularioJuego from './components/FormularioJuego';
 import EstadisticasPersonales from './components/EstadisticasPersonales';
@@ -6,38 +6,48 @@ import BibliotecaJuegos from './components/BibliotecaJuegos';
 import './App.css';
 
 function App() {
-  const [juegos, setJuegos] = useState([
-    {
-      id: 1,
-      titulo: 'Super Mario Odyssey',
-      portada: 'https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg',
-      puntuacion: 96,
-      horasJugadas: 15,
-      completado: false,
-      reseñas: []
-    },
-    {
-      id: 2,
-      titulo: 'The Legend of Zelda: Breath of the Wild',
-      portada: 'https://pics.filmaffinity.com/zeruda_no_densetsu_buresu_obu_za_wairudo-907119617-large.jpg',
-      puntuacion: 98,
-      horasJugadas: 40,
-      completado: true,
-      reseñas: []
-    }
-  ]);
+  const [juegos, setJuegos] = useState([]);
 
-  const agregarJuego = (nuevoJuego) => {
-    setJuegos([...juegos, nuevoJuego]);
+  // Cargar juegos desde el backend
+  useEffect(() => {
+    fetch('http://localhost:5000/api/juegos')
+      .then(res => res.json())
+      .then(data => setJuegos(data));
+  }, []);
+
+  const agregarJuego = async (nuevoJuego) => {
+    const res = await fetch('http://localhost:5000/api/juegos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nuevoJuego)
+    });
+    const juegoGuardado = await res.json();
+    setJuegos([...juegos, juegoGuardado]);
   };
 
-  const eliminarJuego = (id) => {
-    setJuegos(juegos.filter((juego) => juego.id !== id));
-  };
+  const eliminarJuego = async (id) => {
+  await fetch(`http://localhost:5000/api/juegos/${id}`, {
+    method: 'DELETE'
+  });
+  setJuegos(juegos.filter((juego) => juego._id !== id));
+};
 
-  const editarJuego = (id, nuevoTitulo) => {
+
+  const editarJuego = (id, datosEditados) => {
     setJuegos(juegos.map(j =>
-      j.id === id ? { ...j, titulo: nuevoTitulo } : j
+      j._id === id ? { ...j, ...datosEditados } : j
+    ));
+  };
+
+  const agregarReseña = async (idJuego, nuevaReseña) => {
+    const res = await fetch(`http://localhost:5000/api/juegos/${idJuego}/resenas`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nuevaReseña)
+    });
+    const juegoActualizado = await res.json();
+    setJuegos(juegos.map(j =>
+      j._id === idJuego ? juegoActualizado : j
     ));
   };
 
@@ -53,8 +63,10 @@ function App() {
       <section id="biblioteca" className="seccion-ajustada">
         <BibliotecaJuegos
           juegos={juegos}
+          setJuegos={setJuegos}
           eliminarJuego={eliminarJuego}
           editarJuego={editarJuego}
+          agregarReseña={agregarReseña}
         />
       </section>
     </div>
