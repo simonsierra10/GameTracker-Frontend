@@ -24,13 +24,10 @@
   justify-content: center;
 }
 
-
-/* Color más oscuro cuando se hace scroll */
 .navbar-scrolled {
   background: linear-gradient(135deg, #2c3e50, #1a252f);
 }
 
-/* Logo */
 .navbar-logo {
   color: #fff;
   font-size: 28px;
@@ -57,12 +54,10 @@
   transition: color 0.3s ease;
 }
 
-/* Hover */
 .navbar-links li a:hover {
   color: #f1c40f;
 }
 
-/* Opcional: mejorar el aspecto del scroll horizontal si aparece */
 .navbar-links::-webkit-scrollbar {
   height: 6px;
 }
